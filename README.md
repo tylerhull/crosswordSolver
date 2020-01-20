@@ -3,8 +3,9 @@ Crossword solver written in Prolog with a Python interface
 
 ## Get new words from a text file and format for Prolog
 
-*Modified from previous student work in ECE 579*
-Program to get 7 letter words from dictionary file and write to .txt file called *word_list.txt*
+*Modified from previous student work in ECE 579*.
+Program to get 7 letter words from a dictionary text file and write to .txt file called *word_list.txt* 
+
 Compile with: 
 **gcc -o getwords getwords2.c**
 
@@ -12,7 +13,7 @@ Run file with:
 **./getwords**
 
 1. Find 7 letter words using english3.txt
-This file is found at http://www.gwicks.net/dictionaries.htm
+    This file is found at http://www.gwicks.net/dictionaries.htm
     and contains 194,000 english words.
     -This file is hardcoded to get 7 characters words from the dictionary file.
     -In order to get different size words, the print statements will need to
