@@ -21,6 +21,7 @@ Run file with:
     -For example, for a word length of 3 you would write:
 
      printf("word(%s,%c,%c,%c).\n", buf, buf[0], buf[1], buf[2]);
+     
      fprintf (output,"word(%s,%c,%c,%c).\n", buf, buf[0], buf[1], buf[2]);
 
  2. Format them properly and print them out.
@@ -43,9 +44,11 @@ Make sure that the file being read has terms in proper prolog syntax.
 
 2. Call this function from the command line or a program with:
    readFileSee('/home/tyler/Documents/crossword_solver/word_list.txt').
-3. test with: word(doesn^t, _,_,_,_,_,_,_).
+3. test with: 
+              word(doesn^t, _,_,_,_,_,_,_).
               returns true.
-   test with: word(X, _,_,_,_,_,_,_).
+   test with: 
+              word(X, _,_,_,_,_,_,_).
               returns all results. Cycle through them with the ; character.
               Hit return key when you want to stop.
 
