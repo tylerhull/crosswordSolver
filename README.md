@@ -5,8 +5,11 @@ Crossword solver written in Prolog with a Python interface
 
 *Modified from previous student work in ECE 579*
 Program to get 7 letter words from dictionary file and write to .txt file called *word_list.txt*
-Compile with: **gcc -o getwords getwords2.c**
-Run file with: **./getwords**
+Compile with: 
+**gcc -o getwords getwords2.c**
+
+Run file with: 
+**./getwords**
 
 1. Find 7 letter words using english3.txt
 This file is found at http://www.gwicks.net/dictionaries.htm
