@@ -4,38 +4,28 @@
 
 
 from __future__ import print_function
-from pyswip import *
+from pyswip.prolog import Prolog
+from pyswip.easy import *
+
 
 
 def main():
+    prolog.consult("readtest.pl")
+
+    #result = list(prolog.query("L=%s,sudoku(L)" % p, maxresult=1))
+    # Run command to add words to knowledgebase
+    prolog.query(readFileSee("/home/tyler/Documents/crossword_solver/word_list.txt")
+    #list(prolog.query("word(doesn^t, _,_,_,_,_,_,_)"))
+
+    #prolog.query("word(doesn^t,_,_,_,_,_,_,_)")
+    for soln in prolog.query("Y(X,_,_,_,_,_,_,_)")
+    #print(soln["X"], "is the father of", soln["Y"])
 
 
-    p = Prolog()
-
-    father = Functor("father", 2)
-    mother = Functor("mother", 2)
-    assertz = Functor("assertz", 1)
+    print(" -- SOLUTION --")
 
 
-    file = open("word_list.txt", "r")
-    for x in file:
-    print(x)
-    p.assertz(x)
-
-
-    X = Variable(); Y = Variable(); Z = Variable()
-
-    listing = Functor("listing", 1)
-    call(listing(father))
-
-    q = Query(father("john",Y), mother(Z,Y))
-    while q.nextSolution():
-        print(Y.value, Z.value)
-    q.closeQuery()    # Newer versions of SWI-Prolog do not allow nested queries
-
-    print("\nQuery with strings\n")
-    for s in p.query("father(john,Y),mother(Z,Y)"):
-        print(s["Y"], s["Z"])
 
 if __name__ == "__main__":
+    prolog = Prolog()
     main()

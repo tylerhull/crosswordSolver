@@ -1,0 +1,3 @@
+word(aaronic,a,a,r,o,n,i,c).
+word(abactor,a,b,a,c,t,o,r).
+word(abaddon,a,b,a,d,d,o,n).
