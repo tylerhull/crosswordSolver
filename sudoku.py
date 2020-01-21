@@ -78,7 +78,7 @@ def main():
     prolog.query(readFileSee('/home/tyler/Documents/crossword_solver/word_list.txt')
     #list(prolog.query("word(doesn^t, _,_,_,_,_,_,_)"))
 
-    result2 = list(prolog.query("word(X)"))
+    result2 = list(prolog.query("word(doesn^t, d,o,e,s,n,^,t)"))
 
 
     #print(prolog.query(word(doesn^t, _,_,_,_,_,_,_)))
