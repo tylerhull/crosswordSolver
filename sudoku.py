@@ -75,7 +75,7 @@ def main():
     puzzle = puzzle2
 
     # Run command to add words to knowledgebase
-    prolog.query(readFileSee('/home/tyler/Documents/crossword_solver/word_list.txt')
+    prolog.query(readFileSee('/home/tyler/Documents/Github/crosswordSolver/word_list.txt')
     #list(prolog.query("word(doesn^t, _,_,_,_,_,_,_)"))
 
     result2 = list(prolog.query("word(doesn^t, d,o,e,s,n,^,t)"))

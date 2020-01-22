@@ -12,7 +12,7 @@
 %   [readtest].
 
 % 2. Call this function from the command line or a program with:
-%    readFileSee('/home/tyler/Documents/crossword_solver/word_list.txt').
+%    readFileSee('/home/tyler/Documents/Github/crosswordSolver/word_list.txt').
 % 3. test with: word(doesn^t, _,_,_,_,_,_,_).
 %            returns true.
 %    test with: word(X, _,_,_,_,_,_,_).

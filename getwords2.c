@@ -28,8 +28,8 @@
 // Change the path below to the location of your folder.
 // This can be found by using the terminal command "pwd"
 // when you have navigated to the folder using the "cd" command.
-#define dict_path "/home/tyler/Documents/crossword_solver/english3.txt"
-#define out_path "/home/tyler/Documents/crossword_solver/word_list.txt"
+#define dict_path "/home/tyler/Documents/Github/crosswordSolver/english3.txt"
+#define out_path "/home/tyler/Documents/Github/crosswordSolver/word_list.txt"
 #define INPUT_BUF_LEN 80      // Length of input buffer
 #define DICT_WORD_SIZE 194000 // Size of Dictionary used
 
