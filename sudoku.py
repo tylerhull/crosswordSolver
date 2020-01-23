@@ -1,25 +1,4 @@
-# -*- coding: utf-8 -*-
 
-# pyswip -- Python SWI-Prolog bridge
-# Copyright (c) 2007-2018 Yüce Tekol
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
 
 from __future__ import print_function
 from pyswip.prolog import Prolog
@@ -61,7 +40,10 @@ def pretty_print(table):
 
 
 def solve(problem):
-    prolog.consult("sudoku.pl")
+    prolog.consult("readtest.pl")
+
+    result2 = list(prolog.query(readFileSee('/home/tyler/Documents/Github/crosswordSolver/word_list.txt')))
+
     p = str(problem).replace("0", "_")
     result = list(prolog.query("L=%s,sudoku(L)" % p, maxresult=1))
     if result:
@@ -73,25 +55,28 @@ def solve(problem):
 
 def main():
     puzzle = puzzle2
-
-    # Run command to add words to knowledgebase
-    prolog.query(readFileSee('/home/tyler/Documents/Github/crosswordSolver/word_list.txt')
-    #list(prolog.query("word(doesn^t, _,_,_,_,_,_,_)"))
-
-    result2 = list(prolog.query("word(doesn^t, d,o,e,s,n,^,t)"))
-
-
-    #print(prolog.query(word(doesn^t, _,_,_,_,_,_,_)))
-    print(result2)
-
     print("-- PUZZLE --")
     pretty_print(puzzle)
     print()
     print(" -- SOLUTION --")
-
-        prolog.query(word)
-
     solution = solve(puzzle)
+
+
+
+    print(list(prolog.query("word(doesn^t, d,o,e,s,n,^,t)")))
+
+# Run command to add words to knowledgebase
+
+#list(prolog.query("word(doesn^t, _,_,_,_,_,_,_)"))
+
+#result2 = list(prolog.query("word(doesn^t, d,o,e,s,n,^,t)"))
+
+
+#print(prolog.query(word(doesn^t, _,_,_,_,_,_,_)))
+#print(result2)
+
+
+
     if solution:
         pretty_print(solution)
     else:

@@ -26,7 +26,7 @@ blocks([X1,X2,X3|R1], [X4,X5,X6|R2], [X7,X8,X9|R3]) :-
     blocks(R1, R2, R3).
 
 %-------------------------------------------------------------------------------
-% This block of code will add prolog terms from the user supplied text file 
+% This block of code will add prolog terms from the user supplied text file
 readFileSee(InputFile) :- seeing(OldStream),
                           see(InputFile),
                           repeat,   % Use repeat to read all lines
