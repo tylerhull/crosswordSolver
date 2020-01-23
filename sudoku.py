@@ -40,7 +40,7 @@ def pretty_print(table):
 
 
 def solve(problem):
-    prolog.consult("readtest.pl")
+    prolog.consult("sudoku.pl")
 
     result2 = list(prolog.query(readFileSee('/home/tyler/Documents/Github/crosswordSolver/word_list.txt')))
 
