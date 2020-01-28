@@ -127,35 +127,66 @@ int main(){
     fgets(buf, INPUT_BUF_LEN-1, dict);  // fgets injects newline character at end
     totalcount = totalcount + 1;        // Cound the total number of words
 
+    buf[0] = tolower(buf[0]); // Force the first character to lowercase
+
+  //  printf("word(%s,[", buf);
+  //  fprintf(output, "word(%s,[", buf);
+  //  sleep(1);
+
     //**** Search words for a ' or a \n and correct them ****
     int stringLength = strlen(buf);
-    if(strlen(buf) == 8) {    // Need to use 8 here because of the newline char.
-        for (j=0; j < wordLengthArr[j]; j++){  // Search current word for the ' character
+    printf("\nstring length is %d\n",stringLength);
+    if(strlen(buf) > 0) {    // Need to use 8 here because of the newline char.
+        for (j=0; j <= stringLength; j++){  // Search current word for the ' character
           if (buf[j]== '\''){     // Check to see if the current char is a '
             buf[j] = '^';         // Replace the ' with a ^ and continue'
           }
           if (buf[j] == '\n'){        // Find the newline characters
-            buf[stringLength-1] = 0;  // Replace the newline character with 0.
+            buf[j] = 0;  // Replace the newline character with 0.
           }                           // This allows us to print words properly.
+      //    printf("%c,",buf[j]);
+      //    fprintf (output,"%c,",buf[j]);
+      //    sleep(1);
         }
 
-      buf[0] = tolower(buf[0]); // Force the first character to lowercase
-  
-      printf("word(%s,[%c,%c,%c,%c,%c,%c,%c],7).\n", buf,buf[0],buf[1], buf[2], buf[3], buf[4], buf[5], buf[6]);
-      fprintf (output,"word(%s,[%c,%c,%c,%c,%c,%c,%c],7).\n", buf,buf[0],buf[1], buf[2], buf[3], buf[4], buf[5], buf[6]);
+//      buf[0] = tolower(buf[0]); // Force the first character to lowercase
+    //  printf("],%d).\n", wordLengthArr[i]);
+    //  fprintf(output, "],%d).\n", wordLengthArr[i]);
+
+      j = 0;
+      printf("word(%s,[", buf);
+      fprintf(output, "word(%s,[", buf);
+      for(j = 0; j < wordLengthArr[i]; j++) {
+        if (j < stringLength-2){
+          printf("%c,",buf[j]);
+          fprintf(output, "%c,",buf[j]);
+        //  sleep(1);
+        }
+        else {
+          printf("%c",buf[j]);
+          fprintf(output, "%c",buf[j]);
+        //  sleep(1);
+        }
+      }
+    //    fprintf (output,"%c",buf[j]);
+    //  }
+      printf("],%d).\n", wordLengthArr[i]);
+      fprintf(output, "],%d).\n", wordLengthArr[i]);
+    //  fprintf(output, "],%d).\n", wordLengthArr[k]);
+      //printf("word(%s,[%c,%c,%c,%c,%c,%c,%c],7).\n", buf,buf[0],buf[1], buf[2], buf[3], buf[4], buf[5], buf[6]);
+      //fprintf (output,"word(%s,[%c,%c,%c,%c,%c,%c,%c],7).\n", buf,buf[0],buf[1], buf[2], buf[3], buf[4], buf[5], buf[6]);
       wordcount = wordcount + 1;    // Count the number of words printed
     }
-    sleep(0.9);
+  //  sleep(0.9);
   }
 
   //----------------------------------------------------------------------------
   // **** CLEAN UP AND FINISH ****
-
   /* output each array element's value */
   int k = 0;        // Counter for finding largest word.
   int kount = 0;    // Keep track of largest word here.
   int element = 0;  // Keep track of line number of largest word.
-  for (k = 0; k < DICT_WORD_SIZE; k++ ) {
+  for (k = 0; k <= DICT_WORD_SIZE; k++ ) {
   //  printf("Element[%d] = %d\n", k, wordLengthArr[k] );
     if (wordLengthArr[k] > kount){
       kount = wordLengthArr[k];
