@@ -1,8 +1,8 @@
 // Tyler Hull - 1/19/20
-// Modified from previous student work in ECE 579
-// Program to get 7 letter words from dictionary file and write to .txt file
-// Compile with: gcc -o getwords getwords2.c
-// Run file with: ./getwords
+// Expansion of getwords2.c
+// Program to gets all words from dictionary file and writes to .txt file
+// Compile with: gcc -Wall -o getwords3 getwords3.c
+// Run file with: ./getwords3
 
 // 1. Find 7 letter words using english3.txt
 //    This file is found at http://www.gwicks.net/dictionaries.htm
@@ -39,16 +39,18 @@ int main(){
   FILE* output; // Set file pointer for our output file with prolog syntax
                 // We output to a .txt file which can be read and asserted
                 // into a prolog knowledge base using assertz.
-
+  printf("Starting Getwords Program\n");    // Print to terminal when we start.
+  sleep(1);    // Give a little delay
   //----------------------------------------------------------------------------
   // **** COUNT THE NUMBER OF WORDS IN THE FILE ****
   // Open the Dictionary file and count how many lines there are.
   // We assume there are only 1 word per line.
-  int count = 0;  // Line counter (result)
+  int count = 1;  // Line counter (result)
   int DICT_WORD_SIZE = 0; // Counter for the number of words in file
   char c;  // To store a character read from file
 
   printf("Counting the number of lines in the file...\n");    // Print to terminal when we start.
+  sleep(1);    // Give a little delay
   if ((dict = fopen(dict_path,"r")) == NULL) {  // Open a file to the dictionary
       printf("Make sure you update the #define with the path to your file.\n");
       exit(1);    // If the path is wrong, give an error message and exit.
@@ -59,8 +61,8 @@ int main(){
     if (c == '\n') // Increment count if this character is newline
       count = count + 1;
   }
-  // Close the file
-  fclose(dict);
+
+  fclose(dict);            // Close the file
   DICT_WORD_SIZE = count;  // Set the size of the dictionary to line count
 
 
@@ -69,10 +71,11 @@ int main(){
   // Count the number of letters in each word and store them in an array.
 
   int wordLength = 0; // Counter for the length of words
-  int wordLengthArr[DICT_WORD_SIZE];
-  int arrayInt = 0;
+  int wordLengthArr[DICT_WORD_SIZE];  // Set array length to size of file
+  int arrayInt = 0;   // Setup variable for interating through length array
 
   printf("Counting the number letters in each word...\n");    // Print to terminal when we start.
+  sleep(1);    // Give a little delay
   if ((dict = fopen(dict_path,"r")) == NULL) {  // Open a file to the dictionary
       printf("Make sure you update the #define with the path to your file.\n");
       exit(1);    // If the path is wrong, give an error message and exit.
@@ -89,95 +92,68 @@ int main(){
       wordLengthArr[arrayInt] = wordLength;
       arrayInt = arrayInt + 1;
       wordLength = 0;
-
     }
   }
 
-  // Close the file
-  fclose(dict);
-  printf("The file has %d lines\n ", count);
-  DICT_WORD_SIZE = count;  // Set the size of the dictionary to line count
-  sleep(0.5);
-
+  fclose(dict);   // Close the file
+  DICT_WORD_SIZE = count-1; // Set the size of the dictionary to line count
+                            // Subtract 1 to not count blank ending line.
 
 
   //----------------------------------------------------------------------------
-  // **** SETUP TO READ FILES AGAIN ****
-  // Open a file to store our results in.
-  output = fopen (out_path,"w");
+  // **** READ EACH INPUT LINE, FORMAT, WRITE TO FILE ****
+  // Reads each word. Fix it if it has an apostrophe.
+  // Make sure the word starts with a lower case letter since
+  // capital letters are a variable in Prolog syntax.
+  // format word with length of word at end, then print to file.
+
+  output = fopen (out_path,"w");    // Open a file to store our results in.
   char buf[INPUT_BUF_LEN];    // Setup the input buffer to temporarily store words
   int i,j;                    // Setup our loop counters
+  int totalcount = 0;   // Variable for total words searched
+  int wordcount = 0;    // Variable for number of 7 character words.
 
-  printf("Starting Getwords Program\n");    // Print to terminal when we start.
   if ((dict = fopen(dict_path,"r")) == NULL) {  // Open a file to the dictionary
       printf("Make sure you update the #define with the path to your file.\n");
       exit(1);    // If the path is wrong, give an error message and exit.
   }
 
-  //----------------------------------------------------------------------------
-  // **** READ EACH INPUT LINE, IF 7 CHARACTERS, WRITE TO FILE ****
-  // Look for a 7 letter word. Fix it if it has an apostrophe.
-  // Make sure the word starts with a lower case letter since
-  // capital letters are a variable in Prolog syntax.
-  int totalcount = 0;   // Variable for total words searched
-  int wordcount = 0;    // Variable for number of 7 character words.
-
-
   for(i = 0; i < DICT_WORD_SIZE; i++) { // Set the loop for the dictionary length
     fgets(buf, INPUT_BUF_LEN-1, dict);  // fgets injects newline character at end
     totalcount = totalcount + 1;        // Cound the total number of words
-
     buf[0] = tolower(buf[0]); // Force the first character to lowercase
 
-  //  printf("word(%s,[", buf);
-  //  fprintf(output, "word(%s,[", buf);
-  //  sleep(1);
-
-    //**** Search words for a ' or a \n and correct them ****
+    //**** Search words for a ' or a \n and correct them, then print ****
     int stringLength = strlen(buf);
-    printf("\nstring length is %d\n",stringLength);
+    // printf("\nstring length is %d\n",stringLength);
     if(strlen(buf) > 0) {    // Need to use 8 here because of the newline char.
         for (j=0; j <= stringLength; j++){  // Search current word for the ' character
-          if (buf[j]== '\''){     // Check to see if the current char is a '
-            buf[j] = '^';         // Replace the ' with a ^ and continue'
+          if (buf[j]== '\''){               // Check to see if the current char is a '
+            buf[j] = '^';                   // Replace the ' with a ^ and continue'
           }
           if (buf[j] == '\n'){        // Find the newline characters
-            buf[j] = 0;  // Replace the newline character with 0.
+            buf[j] = 0;               // Replace the newline character with 0.
           }                           // This allows us to print words properly.
-      //    printf("%c,",buf[j]);
-      //    fprintf (output,"%c,",buf[j]);
-      //    sleep(1);
         }
 
-//      buf[0] = tolower(buf[0]); // Force the first character to lowercase
-    //  printf("],%d).\n", wordLengthArr[i]);
-    //  fprintf(output, "],%d).\n", wordLengthArr[i]);
+        j = 0;
+        //printf("word(%s,[", buf);
+        fprintf(output, "word(%s,[", buf);
+        for(j = 0; j < wordLengthArr[i]; j++) {
+          if (j < stringLength-2){
+            //printf("%c,",buf[j]);
+            fprintf(output, "%c,",buf[j]);
+          }
+          else {
+            //printf("%c",buf[j]);
+            fprintf(output, "%c",buf[j]);
+          }
+        }
 
-      j = 0;
-      printf("word(%s,[", buf);
-      fprintf(output, "word(%s,[", buf);
-      for(j = 0; j < wordLengthArr[i]; j++) {
-        if (j < stringLength-2){
-          printf("%c,",buf[j]);
-          fprintf(output, "%c,",buf[j]);
-        //  sleep(1);
-        }
-        else {
-          printf("%c",buf[j]);
-          fprintf(output, "%c",buf[j]);
-        //  sleep(1);
-        }
-      }
-    //    fprintf (output,"%c",buf[j]);
-    //  }
-      printf("],%d).\n", wordLengthArr[i]);
-      fprintf(output, "],%d).\n", wordLengthArr[i]);
-    //  fprintf(output, "],%d).\n", wordLengthArr[k]);
-      //printf("word(%s,[%c,%c,%c,%c,%c,%c,%c],7).\n", buf,buf[0],buf[1], buf[2], buf[3], buf[4], buf[5], buf[6]);
-      //fprintf (output,"word(%s,[%c,%c,%c,%c,%c,%c,%c],7).\n", buf,buf[0],buf[1], buf[2], buf[3], buf[4], buf[5], buf[6]);
-      wordcount = wordcount + 1;    // Count the number of words printed
+        //printf("],%d).\n", wordLengthArr[i]);
+        fprintf(output, "],%d).\n", wordLengthArr[i]);
+        wordcount = wordcount + 1;    // Count the number of words printed
     }
-  //  sleep(0.9);
   }
 
   //----------------------------------------------------------------------------
@@ -186,18 +162,19 @@ int main(){
   int k = 0;        // Counter for finding largest word.
   int kount = 0;    // Keep track of largest word here.
   int element = 0;  // Keep track of line number of largest word.
-  for (k = 0; k <= DICT_WORD_SIZE; k++ ) {
-  //  printf("Element[%d] = %d\n", k, wordLengthArr[k] );
-    if (wordLengthArr[k] > kount){
+  for (k = 0; k <= DICT_WORD_SIZE-1; k++ ) {  //Don't count last empty line
+    // printf("Element[%d] = %d\n", k, wordLengthArr[k] ); // Print elements of array.
+    if (wordLengthArr[k] > kount){  // Find the line with the longest word.
       kount = wordLengthArr[k];
       element = k;
     }
   }
 
+  printf("The file has %d lines\n", count); // Print the total number of lines.
+  sleep(1);   // Give a little delay
   // Print out the amount of words found out of the total number searched.
   printf("Found %d usable words out of %d words in file. \n", wordcount, totalcount);
-  // printf("The file has %d lines\n", count);
-
+  sleep(1);   // Give a little delay
   // Print location of largest word corrected for array starting at zero.
   printf("Largest word is %d characters at line number: %d\n", kount, element + 1);
 
