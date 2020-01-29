@@ -136,17 +136,17 @@ int main(){
           }                           // This allows us to print words properly.
         }
 
-        j = 0;
+        j = 0;  // Reset counter variable to zero
         //printf("word(%s,[", buf);
-        fprintf(output, "word(%s,[", buf);
-        for(j = 0; j < wordLengthArr[i]; j++) {
-          if (j < stringLength-2){
+        fprintf(output, "word(%s,[", buf);      // Print out the first portion of format.
+        for(j = 0; j < wordLengthArr[i]; j++) { // Move through each character in word
+          if (j < stringLength-2){              // Check if last character of word
             //printf("%c,",buf[j]);
-            fprintf(output, "%c,",buf[j]);
+            fprintf(output, "%c,",buf[j]);      // If not last, print with comma
           }
           else {
             //printf("%c",buf[j]);
-            fprintf(output, "%c",buf[j]);
+            fprintf(output, "%c",buf[j]);       // If last, print without comma 
           }
         }
 
