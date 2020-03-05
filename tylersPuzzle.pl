@@ -1,3 +1,4 @@
+word(crate,[c,r,a,t,e],5).
 
 
 % intersection(W1, W2, I1, I2) is true if
