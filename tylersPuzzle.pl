@@ -36,6 +36,7 @@ intersection(Word1, Word2, Index1, Index2):-
         word(W1, _, 5),
         word(W2, _, 2),
         word(W3, _, 7),
+				word(W3D, _, 7),
         word(W4, _, 6),
         word(W5, _, 2),
         word(W6, _, 2),

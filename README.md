@@ -4,12 +4,12 @@ Crossword solver written in Prolog with a Python interface
 ## Get new words from a text file and format for Prolog
 
 *Modified from previous student work in ECE 579*.
-Program to get 7 letter words from a dictionary text file and write to .txt file called *word_list.txt* 
+Program to get 7 letter words from a dictionary text file and write to .txt file called *word_list.txt*
 
-Compile with: 
+Compile with:
 **gcc -o getwords getwords2.c**
 
-Run file with: 
+Run file with:
 **./getwords**
 
 1. Find 7 letter words using english3.txt
@@ -18,11 +18,11 @@ Run file with:
     -This file is hardcoded to get 7 characters words from the dictionary file.
     -In order to get different size words, the print statements will need to
      be modified to print the buffer array numbers to suit your word length.
-    
+
     -For example, for a word length of 3 you would write:
 
      *printf("word(%s,%c,%c,%c).\n", buf, buf[0], buf[1], buf[2]);*
-     
+
      *fprintf (output,"word(%s,%c,%c,%c).\n", buf, buf[0], buf[1], buf[2]);*
 
  2. Format them properly and print them out.
@@ -44,20 +44,19 @@ Make sure that the file being read has terms in proper prolog syntax.
    **[readtest].**
 
 2. Call this function from the command line or a program with:
-   
+
    **readFileSee('/home/tyler/Documents/crossword_solver/word_list.txt').**
-3. test with: 
+3. test with:
               word(doesn^t, _,_,_,_,_,_,_).
               returns true.
-   test with: 
+   test with:
               word(X, _,_,_,_,_,_,_).
               returns all results. Cycle through them with the ; character.
               Hit return key when you want to stop.
 
-## Now that you have your list of words working, lets used them to solve crosswords
+## Now that you have your list of words working, lets use them to solve crosswords!
 
 ...
 ...
 ...
 ...
-

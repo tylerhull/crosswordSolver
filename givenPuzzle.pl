@@ -1,3 +1,4 @@
+% These are the words in our knowledge base
 word(abalone,a,b,a,l,o,n,e).
 word(abandon,a,b,a,n,d,o,n).
 word(enhance,e,n,h,a,n,c,e).
@@ -6,7 +7,12 @@ word(connect,c,o,n,n,e,c,t).
 word(elegant,e,l,e,g,a,n,t).
 
 
+% ** This section defines the Puzzle. **
+% V's describe vertical words.
+% H's describe horizontal words.
 crosswd(V1,V2,V3,H1,H2,H3) :-
+  % Capital letters below are variables for
+  % squares that overlap in the puzzle.
                 word(V1,_,A,_,B,_,C,_),
                 word(V2,_,D,_,E,_,F,_),
                 word(V3,_,G,_,H,_,I,_),
@@ -25,5 +31,5 @@ readFileSee(InputFile) :- seeing(OldStream),
                                                 % Add to knowledge
                                                 % base with assertz
                 ),
-                seen,
+                seen,     % Clean up and close file 
                 see(OldStream).
