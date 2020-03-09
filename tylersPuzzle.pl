@@ -1,5 +1,16 @@
+word(abacus,[a,b,a,c,u,s],6).
+word(echoic,[e,c,h,o,i,c],6).
 word(crate,[c,r,a,t,e],5).
-
+word(schmuck,[s,c,h,m,u,c,k],7).
+word(alarmed,[a,l,a,r,m,e,d],7).
+word(ce,[c,e],2).
+word(ed,[e,d],2).
+word(ee,[e,e],2).
+word(ae,[a,e],2).
+word(oh,[o,h],2).
+word(cat,[c,a,t],3).
+word(mom,[m,o,m],3).
+word(kid,[k,i,d],3).
 
 % intersection(W1, W2, I1, I2) is true if
 % word W1 has an intersection with word W2
@@ -37,7 +48,7 @@ intersection(Word1, Word2, Index1, Index2):-
         word(W1, _, 5),
         word(W2, _, 2),
         word(W3, _, 7),
-				word(W3D, _, 7),
+				word(W3D, _, 6),
         word(W4, _, 6),
         word(W5, _, 2),
         word(W6, _, 2),
