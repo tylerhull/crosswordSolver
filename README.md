@@ -1,5 +1,5 @@
 # crosswordSolver
-Crossword solver written in Prolog with a Python interface
+Crossword solver written in Prolog with a C program for formating words
 
 ## Get new words from a text file and format for Prolog
 
