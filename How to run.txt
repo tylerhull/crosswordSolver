@@ -1,0 +1,22 @@
+********* Steps to take for running module ************
+sudo insmod h2module.ko
+cat proc/devices | grep h2module
+dmesg | tail -10
+sudo mknod /dev/h2module_0 c 241 0
+sudo ./tiny
+sudo rmmod h2module
+sudo insmod h2module.ko param_val=97
+sudo./tiny
+dmesg | tail -10
+
+
+To read the current device numbers
+cat /proc/devices
+
+To see the details on the node you created
+ls -l /dev/h2module_0
+
+
+
+*** start a typescript ****
+script tylerScript.txt
